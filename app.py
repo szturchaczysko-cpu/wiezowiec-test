@@ -39,7 +39,7 @@ if TEST_MODE:
         _prod = db.collection("operator_configs").document("Sylwia").get().to_dict() or {}
         _seed = _prod if _prod else {
             "role": "Operatorzy_DE",
-            "prompt_url": "https://raw.githubusercontent.com/szturchaczysko-cpu/szturchacz/refs/heads/main/v4_forum.txt",
+            "prompt_url": "https://raw.githubusercontent.com/szturchaczysko-cpu/szturchacz/refs/heads/main/prompt_wiezowiec_v4_gemini-3-2.md",
             "prompt_name": "v4",
             "assigned_key_index": 1,
             "tel": False,
