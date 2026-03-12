@@ -39,7 +39,7 @@ if TEST_MODE:
         _prod = db.collection("operator_configs").document("Sylwia").get().to_dict() or {}
         _seed = _prod if _prod else {
             "role": "Operatorzy_DE",
-            "prompt_url": "https://raw.githubusercontent.com/szturchaczysko-cpu/szturchacz/refs/heads/main/prompt_wiezowiec_v4_gemini-3-2.md",
+            "prompt_url": "https://raw.githubusercontent.com/szturchaczysko-cpu/szturchacz/refs/heads/main/prompt4624.txt",
             "prompt_name": "v4",
             "assigned_key_index": 1,
             "tel": False,
@@ -1770,7 +1770,10 @@ analizbior=NIE
 # ==========================================
 with tab_batches:
     st.subheader("📦 Historia partii Wieżowca")
-    batches = db.collection(col("ew_batches")).order_by("created_at", direction=firestore.Query.DESCENDING).limit(20).get()
+    try:
+        batches = db.collection(col("ew_batches")).order_by("created_at", direction=firestore.Query.DESCENDING).limit(20).get()
+    except Exception:
+        batches = []
     if not batches:
         st.info("Brak wygenerowanych partii.")
     else:
@@ -1810,7 +1813,10 @@ with tab_cases:
     st.subheader("📋 Przegląd casów")
     
     # Pobierz WSZYSTKIE casy raz (dla filtrów i statystyk)
-    all_cases_raw = db.collection(col("ew_cases")).order_by("score", direction=firestore.Query.DESCENDING).limit(2000).get()
+    try:
+        all_cases_raw = db.collection(col("ew_cases")).order_by("score", direction=firestore.Query.DESCENDING).limit(2000).get()
+    except Exception:
+        all_cases_raw = []
     all_cases_data = [(d.id, d.to_dict()) for d in all_cases_raw]
     
     # Zbierz unikalne wartości do selectboxów
@@ -1995,7 +2001,10 @@ with tab_skipped:
     st.caption("Casy przeniesione tutaj po wyczyszczeniu kolejki. Miały komentarz pominięcia bez oznaczenia 'Naprawione'.")
     
     # Pobierz archiwum
-    archived_raw = db.collection(col("ew_cases_archived")).order_by("score", direction=firestore.Query.DESCENDING).limit(500).get()
+    try:
+        archived_raw = db.collection(col("ew_cases_archived")).order_by("score", direction=firestore.Query.DESCENDING).limit(500).get()
+    except Exception:
+        archived_raw = []
     archived_data = [(d.id, d.to_dict()) for d in archived_raw]
     
     if not archived_data:
