@@ -4,6 +4,7 @@ from vertexai.generative_models import GenerativeModel, Content, Part, SafetySet
 from google.oauth2 import service_account
 from datetime import datetime
 import json, re, pytz, time
+import pandas as pd
 import firebase_admin
 from firebase_admin import credentials, firestore
 import requests
