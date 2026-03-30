@@ -80,7 +80,7 @@ except:
 
 # --- PROMPTY WIEŻOWCA ---
 WIEZOWIEC_PROMPT_URLS = {
-    "Wieżowiec v5 (stabilny)": "https://raw.githubusercontent.com/szturchaczysko-cpu/szturchacz-test/refs/heads/main/v4_forum.txt",
+    "Wieżowiec v5 (stabilny)": "https://raw.githubusercontent.com/szturchaczysko-cpu/szturchacz/refs/heads/main/prompt_wiezowiec_v4_gemini-3.md",
 }
 custom_data = (db.collection(col("admin_config")).document("custom_prompts").get().to_dict() or {}).get("urls", {})
 for name, url in custom_data.items():
